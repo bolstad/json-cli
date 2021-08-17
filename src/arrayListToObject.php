@@ -18,14 +18,14 @@ class arrayListToObject
         $newArray = array();
         foreach ($this->jsonData as $num) {
             $label = $num->field_name;
-            echo "$label\n";
+#            echo "$label\n";
             $counter = 0;
             foreach ($num->values as $val) {
                 $newArray[$counter][$label] = $val;
                 $counter++;
             }
         }
-        print_r($newArray);
+       return $newArray;
 
     }
 

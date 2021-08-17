@@ -12,6 +12,7 @@ class Init
     private $handlers = array();
     private $handlerFound;
     private $handler;
+    private $config;
 
     public function __construct()
     {
@@ -27,8 +28,12 @@ class Init
             $this->setupCli();
         }
 
-        print_r($this->config);
 
+/**
+        echo "here\n";
+        print_r($this->config);
+        echo "the config is above\n";
+**/
         if (isset($this->handlers[$this->config['modifier']])) {
             $this->handler = new $this->handlers[$this->config['modifier']]($this->params->getJsonData());
             $this->handlerFound = true;
@@ -40,8 +45,8 @@ class Init
     {
         $this->cliMode = true;
         $this->params = new ParseCliParameters();
-        $config = $this->params->getConfig();
-        print_r($config);
+        $this->config = $this->params->getConfig();
+#        print_r($this->config);
     }
 
     public function run()
@@ -51,7 +56,9 @@ class Init
         }
 
         if ($this->handlerFound) {
-            $this->handler->process();
+            $returnData =  $this->handler->process();
+            $jsonData = json_encode($returnData, JSON_PRETTY_PRINT);
+            echo $jsonData;
         }
     }
 }

@@ -5,3 +5,4 @@ composer.lock
 test.sh
 *.phar
 json-cli
+.DS_Store
