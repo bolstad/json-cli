@@ -11,7 +11,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "symfony/console": "5.4.x-dev"
+        "symfony/console": "5.4.x-dev",
+        "symfony/finder": "5.4.x-dev"
     },
     "autoload": {
         "psr-4": {

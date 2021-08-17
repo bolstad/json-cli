@@ -26,8 +26,12 @@ class Init
         if (php_sapi_name() == "cli") {
             $this->setupCli();
         }
-        if (isset($this->handlers['arrayListToObject'])) {
-            $this->handler = new $this->handlers['arrayListToObject']($this->params->getJsonData());
+
+        print_r($this->config);
+
+        if (isset($this->handlers[$this->config['modifier']])) {
+            $this->handler = new $this->handlers[$this->config['modifier']]($this->params->getJsonData());
+            $this->handlerFound = true;
         }
 
     }
@@ -42,6 +46,12 @@ class Init
 
     public function run()
     {
-        $this->handler->process();
+        if (!$this->handlerFound) {
+            echo "No handlers found";
+        }
+
+        if ($this->handlerFound) {
+            $this->handler->process();
+        }
     }
 }
