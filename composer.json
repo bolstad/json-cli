@@ -10,7 +10,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "symfony/console": "5.4.x-dev"
+    },
     "autoload": {
         "psr-4": {
             "bolstad\\JsonCli\\": "src/",
